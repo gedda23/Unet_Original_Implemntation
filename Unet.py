@@ -59,13 +59,13 @@ class Unet(nn.Module):
     def forward(self,image):
 
         ## Encoder Part
-        x1 = self.down_conv1(image) #
+        x1 = self.down_conv1(image) 
         x2 = self.max_pool_2x2(x1)
-        x3 = self.down_conv2(x2) #
+        x3 = self.down_conv2(x2) 
         x4 = self.max_pool_2x2(x3)
-        x5 = self.down_conv3(x4) #
+        x5 = self.down_conv3(x4) 
         x6 = self.max_pool_2x2(x5)
-        x7 = self.down_conv4(x6) #
+        x7 = self.down_conv4(x6) 
         x8 = self.max_pool_2x2(x7)
         x9 = self.down_conv5(x8)
 
