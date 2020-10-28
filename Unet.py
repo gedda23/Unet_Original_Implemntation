@@ -1,6 +1,5 @@
 import torch
 import torch.nn as nn
-import numpy as np
 
 def double_conv(in_c,out_c):
     conv = nn.Sequential(
@@ -69,7 +68,7 @@ class Unet(nn.Module):
         x8 = self.max_pool_2x2(x7)
         x9 = self.down_conv5(x8)
 
-        ##Decoder Part
+        ## Decoder Part
         x10 = self.transpose_conv1(x9)
         cropped_img1 = crop_tensor(x7,x10)
         x10 = self.up_conv1(torch.cat((x10,cropped_img1),1))
@@ -87,11 +86,12 @@ class Unet(nn.Module):
         x14 = self.up_conv4(torch.cat((x13,cropped_img4),1))
 
         x14 = self.out_layer(x14)
-        print(x14.size())
+
+        return x14
 
 
 
 if __name__ == "__main__":
     image = torch.rand((1,1,572,572))
     model = Unet()
-    model(image)
+    print(model(image).size()) 
